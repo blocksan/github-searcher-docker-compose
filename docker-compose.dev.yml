@@ -6,27 +6,27 @@ services:
     stdin_open: true
     tty: true
     build:
-      context: ./github-search-frontend/.
+      context: ./../github-search-frontend/.
       dockerfile: Dockerfile.dev
     networks:
       - githubnetwork
     volumes:
       - type: bind
-        source: ./github-search-frontend/src
+        source: ./../github-search-frontend/src
         target: /frontend/src
     depends_on:
       - githubsearcher
   githubsearcher:
     container_name: githubsearcher
     build:
-      context: ./github-search/.
+      context: ./../github-search/.
       dockerfile: Dockerfile.dev
     volumes:
       - type: bind
-        source: ./github-search/src
+        source: ./../github-search/src
         target: /app/src
     env_file:
-      - ./github-search/.env
+      - ./../github-search/.env
     networks:
       - githubnetwork
     depends_on:
@@ -35,7 +35,7 @@ services:
   githubsearcherdocument:
     container_name: githubsearcherdocument
     build:
-      context: ./github-search/.
+      context: ./../github-search/.
       dockerfile: Dockerfile.document
     ports:
       - 8000:8080
@@ -44,13 +44,13 @@ services:
   githubmicroservice:
     container_name: githubmicroservice
     build:
-      context: ./microservice-redis/.
+      context: ./../microservice-redis/.
       dockerfile: Dockerfile.dev
     env_file:
-      - ./microservice-redis/.env
+      - ./../microservice-redis/.env
     volumes:
       - type: bind
-        source: ./microservice-redis/src
+        source: ./../microservice-redis/src
         target: /app/src
     networks:
       - githubnetwork
@@ -59,7 +59,7 @@ services:
   microserviceredisdocument:
     container_name: microserviceredisdocument
     build:
-      context: ./microservice-redis/.
+      context: ./../microservice-redis/.
       dockerfile: Dockerfile.document
     ports:
       - 9000:8080
@@ -74,7 +74,7 @@ services:
     image: nginx:mainline-alpine
     container_name: nginx
     volumes:
-      - ./github-search/nginx.dev.conf:/etc/nginx/nginx.conf
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf
     networks:
       - githubnetwork
     ports:
