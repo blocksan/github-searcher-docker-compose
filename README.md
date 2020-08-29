@@ -435,9 +435,13 @@ docker-compose -f docker-compose.deploy.yml build
 docker-compose -f docker-compose.deploy.yml up
 ```
 Open [http://host_ip](http://localhost) to view the app in the browser.
-Open [http://host_ip:8000](http://localhost:8000) to view APP documentation the browser
-Open [http://host_ip:9000](http://localhost:9000) to view REDIS Microservice documentation in the browser
-Open [http://host_ip/api/swagger](http://localhost/api/gitswagger) to view swagger documentation in the browser
+
+Open [http://host_ip:8000](http://localhost:8000) to view APP documentation the browser.
+
+Open [http://host_ip:9000](http://localhost:9000) to view REDIS Microservice documentation in the browser.
+
+Open [http://host_ip/api/swagger](http://localhost/api/gitswagger) to view swagger documentation in the browser.
+
 
 #### Stay in touch
  [Sandeep Ghosh](http://sandeepghosh.com)
