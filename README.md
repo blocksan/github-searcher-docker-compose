@@ -67,6 +67,9 @@ Following technologies have been used while building this application
 ##### Screen size 768
 [![dPTPxp.md.png](https://iili.io/dPTPxp.md.png)](https://freeimage.host/i/dPTPxp)
 
+##### Test Cases
+[![diBmLF.md.png](https://iili.io/diBmLF.md.png)](https://freeimage.host/i/diBmLF)
+
 #### Features included in this backend service
   -  **Infinite Scrolling** 
   -  **Store Rehydration** using React Persist
@@ -188,6 +191,9 @@ Features included in this backend service
 
 #### Compodoc Documentation snapshot
 [![dPYCxf.md.png](https://iili.io/dPYCxf.md.png)](https://freeimage.host/i/dPYCxf)
+
+#### Test Cases
+[![diBbX1.md.png](https://iili.io/diBbX1.md.png)](https://freeimage.host/i/diBbX1)
 
 ## How to run this application
   - Option 1 : Github way of cloning repositories 
