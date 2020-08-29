@@ -5,6 +5,9 @@ services:
     container_name: githubsearcherfrontend
     build:
       context: ./../github-search-frontend/.
+      dockerfile: Dockerfile
+    env_file:
+      - ./frontend.env
     networks:
       - githubnetwork
     depends_on:

@@ -61,6 +61,8 @@ services:
     build:
       context: ./../microservice-redis/.
       dockerfile: Dockerfile.document
+    env_file:
+      - ./../microservice-redis/.env
     ports:
       - 9000:8080
     networks:
