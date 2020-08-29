@@ -440,7 +440,7 @@ Open [http://host_ip:8000](http://localhost:8000) to view APP documentation the 
 
 Open [http://host_ip:9000](http://localhost:9000) to view REDIS Microservice documentation in the browser.
 
-Open [http://host_ip/api/swagger](http://localhost/api/gitswagger) to view swagger documentation in the browser.
+Open [http://host_ip/api/gitswagger](http://localhost/api/gitswagger) to view swagger documentation in the browser.
 
 
 #### Stay in touch
