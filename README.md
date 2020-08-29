@@ -1,7 +1,7 @@
 #### There are 3 services in this application
-1. Github Searcher Frontend Service
-2. Github Searcher Backend MicroService
-3. REDIS microservice
+1. Github Searcher Frontend Service ( [github-search-frontend](https://github.com/blocksan/github-search-frontend) )
+2. Github Searcher Backend MicroService ( [github-search](https://github.com/blocksan/github-search) )
+3. REDIS microservice ( [microservice-redis](https://github.com/blocksan/microservice-redis) )
 
 Details about all the services are provided below with snapshots. Please read section by section.
 ***Refer : Running the project end to end via docker images [E2E]*** for running the project end to end or if you want to skip the documentation
