@@ -1,0 +1,88 @@
+version: '3.7'
+
+services:
+  githubsearcherfrontend:
+    container_name: githubsearcherfrontend
+    stdin_open: true
+    tty: true
+    build:
+      context: ./github-search-frontend/.
+      dockerfile: Dockerfile.dev
+    networks:
+      - githubnetwork
+    volumes:
+      - type: bind
+        source: ./github-search-frontend/src
+        target: /frontend/src
+    depends_on:
+      - githubsearcher
+  githubsearcher:
+    container_name: githubsearcher
+    build:
+      context: ./github-search/.
+      dockerfile: Dockerfile.dev
+    volumes:
+      - type: bind
+        source: ./github-search/src
+        target: /app/src
+    env_file:
+      - ./github-search/.env
+    networks:
+      - githubnetwork
+    depends_on:
+      - redis
+      - githubmicroservice
+  githubsearcherdocument:
+    container_name: githubsearcherdocument
+    build:
+      context: ./github-search/.
+      dockerfile: Dockerfile.document
+    ports:
+      - 8000:8080
+    networks:
+      - githubnetwork
+  githubmicroservice:
+    container_name: githubmicroservice
+    build:
+      context: ./microservice-redis/.
+      dockerfile: Dockerfile.dev
+    env_file:
+      - ./microservice-redis/.env
+    volumes:
+      - type: bind
+        source: ./microservice-redis/src
+        target: /app/src
+    networks:
+      - githubnetwork
+    depends_on:
+      - redis
+  microserviceredisdocument:
+    container_name: microserviceredisdocument
+    build:
+      context: ./microservice-redis/.
+      dockerfile: Dockerfile.document
+    ports:
+      - 9000:8080
+    networks:
+      - githubnetwork
+  redis:
+    container_name: redis_container
+    image: redis:5
+    networks:
+      - githubnetwork
+  nginx: 
+    image: nginx:mainline-alpine
+    container_name: nginx
+    volumes:
+      - ./github-search/nginx.dev.conf:/etc/nginx/nginx.conf
+    networks:
+      - githubnetwork
+    ports:
+      - 80:80
+    depends_on: 
+      - githubsearcherfrontend
+      - githubsearcher
+      - githubmicroservice
+      - githubsearcherdocument
+networks:
+  githubnetwork:

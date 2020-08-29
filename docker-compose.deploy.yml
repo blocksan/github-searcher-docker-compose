@@ -1,0 +1,70 @@
+version: '3.7'
+
+services:
+  githubsearcherfrontend:
+    container_name: githubsearcherfrontend
+    image: dockerghosh/githubsearchfrontend:latest
+    networks:
+      - githubnetwork
+    depends_on:
+      - githubsearcher
+    env_file:
+      - ./frontend.env
+  githubsearcher:
+    container_name: githubsearcher
+    image: dockerghosh/githubsearch:latest
+    env_file:
+      - ./app.env
+    networks:
+      - githubnetwork
+    depends_on:
+      - redis
+      - githubmicroservice
+  githubsearcherdocument:
+    container_name: githubsearcherdocument
+    image: dockerghosh/githubsearchdocument:latest
+    ports:
+      - 8000:8080
+    env_file:
+      - ./app.env
+    networks:
+      - githubnetwork
+  githubmicroservice:
+    container_name: githubmicroservice
+    image: dockerghosh/microserviceredis:latest
+    env_file:
+      - ./microservice.env
+    networks:
+      - githubnetwork
+    depends_on:
+      - redis
+  microserviceredisdocument:
+    container_name: microserviceredisdocument
+    image: dockerghosh/microserviceredisdocument:latest
+    env_file:
+      - ./microservice.env
+    ports:
+      - 9000:8080
+    networks:
+      - githubnetwork
+  redis:
+    container_name: redis_container
+    image: redis:5
+    networks:
+      - githubnetwork
+  nginx: 
+    image: nginx:mainline-alpine
+    container_name: nginx
+    volumes:
+      - ./nginx.prod.conf:/etc/nginx/nginx.conf
+    networks:
+      - githubnetwork
+    ports:
+      - 80:80
+    depends_on: 
+      - githubsearcherfrontend
+      - githubsearcher
+      - githubmicroservice
+      - githubsearcherdocument
+networks:
+  githubnetwork:
